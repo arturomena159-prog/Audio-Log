@@ -1,27 +1,63 @@
+<!-- DOCTYPE html le dice al navegador que este archivo usa HTML5, la versión moderna de HTML -->
 <!DOCTYPE html>
 
+<!-- lang="en" indica que el contenido está en inglés — útil para lectores de pantalla y SEO -->
 <html lang="en">
   <head>
+    <!-- El head contiene configuración de la página, no se ve en pantalla -->
+
+    <!-- charset="UTF-8" permite usar letras especiales como ñ, acentos, emojis, etc. -->
     <meta charset="UTF-8">
+
+    <!-- viewport hace que la página se vea bien en celulares y tablets, no solo en desktop -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- El title es el texto que aparece en la pestaña del navegador -->
     <title>AudioLog</title>
   </head>
+
   <body>
+    <!-- El body contiene todo lo que el usuario VE en la pantalla -->
+
+    <!-- div es una caja invisible que agrupa elementos para organizarlos o darles estilo -->
+    <!-- class="login-container" le pone un nombre a esta caja para poder estilizarla con CSS después -->
     <div class="login-container">
+
+      <!-- h1 es el título más grande de la página — solo debe haber uno por página -->
       <h1>AudioLog</h1>
+
+      <!-- form agrupa los campos del formulario -->
+      <!-- id="login-form" le da un nombre único para que app.js pueda encontrarlo -->
       <form id="login-form">
+
+        <!-- input type="email" muestra un campo de texto, pero el navegador valida que sea formato email -->
+        <!-- id="email" permite leer su valor desde JavaScript con getElementById("email") -->
+        <!-- placeholder es el texto gris que aparece dentro del campo antes de escribir -->
         <input type="email" id="email" placeholder="Email">
+
+        <!-- type="password" oculta los caracteres que escribe el usuario (los muestra como ●●●●) -->
         <input type="password" id="password" placeholder="Password">
+
+        <!-- type="submit" envía el formulario — dispara el evento "submit" que escucha app.js -->
         <button type="submit">Log in</button>
+
+        <!-- type="button" NO envía el formulario — solo dispara un click normal -->
+        <!-- id="create-account" permite que app.js escuche el click en este botón específico -->
         <button type="button" id="create-account">Create account</button>
+
       </form>
     </div>
+
+    <!-- Los scripts van al final del body para que primero cargue el HTML y luego el JavaScript -->
+
+    <!-- Carga la librería principal de Firebase desde los servidores de Google (CDN) -->
+    <!-- "compat" significa que usa la sintaxis clásica de Firebase (firebase.X en vez de import X) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+
+    <!-- Carga el módulo de autenticación de Firebase (login, crear cuenta, etc.) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+    <!-- Carga nuestro archivo app.js — va DESPUÉS de Firebase porque lo necesita para funcionar -->
     <script src="app.js"></script>
   </body>
-
-
-
-
-
+</html>

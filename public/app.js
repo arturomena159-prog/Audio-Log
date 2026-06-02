@@ -1,5 +1,6 @@
 // Configuración de Firebase — estas son las credenciales de tu proyecto en Firebase Console
 // Firebase las usa para saber a qué base de datos y proyecto conectarse
+// const = constant
 const firebaseConfig = {
   apiKey: "AIzaSyBMFDWMqVT8GUxf1ZTHnCiL9mmvrV98W9Q",
   authDomain: "audio-log-b1c37.firebaseapp.com",
@@ -31,7 +32,8 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
     // .catch() = si Firebase dice que no → muestra el mensaje de error que Firebase nos da
     auth.signInWithEmailAndPassword(email, password)
     .then(function() {
-        alert("Successful Login!");
+        window.location.href = "dashboard.html";
+
     })
     .catch(function(error) {
         alert(error.message);

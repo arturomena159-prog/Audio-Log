@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AudioLog - Project</title>
+    </head>
+<body>
+    <header>
+        <a id="back-link" href="#">&larr; Back</a>
+        <h1 id="project-name"></h1>
+    </header>
+
+    <main>
+        <section id="timer-section">
+            <h2>Timer</h2>
+            <p id="timer-display">00:00:00</p>
+            <button id="start-timer">Start</button>
+            <button id="pause-timer">Pause</button>
+            <button id="stop-timer" disabled>Stop</button>
+        </section>
+
+<section id="hours-section">
+    <h2>Total hours</h2>
+    <p id="total-hours">0h 0m</p>
+</section>
+
+
+    </main>
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+        <script src="project.js"></script>
+
+</body>
+</html>
