@@ -24,32 +24,34 @@ Cliente → Proyecto → Sesiones / Finanzas / Notas
 - Hosting: Firebase Hosting
 - Control de versiones: GitHub
 
-## Estado (2026-06-01)
+## Estado (2026-06-02)
 - Firebase inicializado, proyecto ID: `audio-log-b1c37`
 - Firebase Authentication activado con Email/Password
-- Construyendo pantalla de login en `public/index.html`
-- El usuario escribe el código línea por línea (quiere aprender haciendo)
-- Idioma elegido: `lang="en"` (la app se compartirá con hablantes de inglés)
-- VS Code autocomplete desactivado (quickSuggestions, inlineSuggest, autoClosingTags)
+- Login funcional — probado y confirmado con usuario real en Firebase
+- Toda la UI y mensajes en inglés
+- VS Code: autocompletado desactivado, shortcut Ctrl+Esc remapeado a Ctrl+Alt+C
 
-## Estado actual de index.html
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AudioLog</title>
-  </head>
-  <body>
-    <div class="login-container">
-      
-    </div>
-  </body>
-</html>
+## Archivos actuales
+- `public/index.html` — formulario de login completo (h1, form, inputs, button, Firebase SDK, app.js)
+- `public/app.js` — lógica de login completa (config, init, auth, event listener, signIn, then/catch)
+
+## Estado actual de app.js
+```javascript
+const firebaseConfig = { ... }; // credenciales del proyecto
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+document.getElementById("login-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    auth.signInWithEmailAndPassword(email, password)
+        .then(function() { alert("Successful Login!"); })
+        .catch(function(error) { alert(error.message); });
+});
 ```
 
-**Próximo paso:** Añadir `<h1>AudioLog</h1>` dentro del `login-container`, luego el formulario de login.
+**Próximo paso:** Reemplazar el alert de "Successful Login!" con redirección a la pantalla principal de la app.
 
-**Why:** El usuario lo definió junto a Claude.ai antes de comenzar con Claude Code.
-**How to apply:** Continuar línea por línea con el index.html. El usuario entiende qué es div y class.
+**Why:** El alert es temporal para verificar que el login funciona. Funciona correctamente.
+**How to apply:** Continuar construyendo la pantalla principal (dashboard) y redirigir desde el .then().
