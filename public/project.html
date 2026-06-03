@@ -25,6 +25,55 @@
     <p id="total-hours">0h 0m</p>
 </section>
 
+<section id="finances-section">
+    <h2>Finances</h2>
+    <label>Payment type:
+        <select id="payment-type-input">
+            <option value="hourly">Hourly</option>
+            <option value="fixed">Fixed</option>
+            <option value="no-charge">No charge</option>
+        </select>
+    </label>
+
+    <div id="hourly-fields">
+        <label>Rate per hour: <input type="number" id="rate-input"></label>
+        <p>Estimated total: <span id="estimated-total">-</span></p>
+    </div>
+
+    <div id="fixed-fields" style="display:none">
+        <label>Total amount: <input type="number" id="amount-input"></label>
+            <p>Effective hourly rate: <span id="effective-rate">-</span></p>
+    </div> 
+
+    <div id="charge-fields">
+        <label>Payment status:
+            <select id="payment-status-input">
+                <option value="Pending">Pending</option>
+                <option value="Paid">Paid</option>
+                <option value="Partial">Partial</option>
+            </select>
+        </label>
+    </div>
+
+
+    <div id="partial-paid" style="display:none">
+        <label>Paid amount: <input type="number" id="amount-paid-input"></label>
+        <p>Remaining: <span id="remaining-amount">-</span></p>
+    </div>
+    
+    <button id="save-finances">Save finances</button>
+</section>
+
+
+
+<section id="notes-section">
+    <h2>Notes</h2>
+    <textarea id="note-input" placeholder="Write a note..."></textarea>
+    <button id="add-note">Add note</button>
+    <ul id="notes-list"></ul>
+</section>
+
+
 
     </main>
         <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>

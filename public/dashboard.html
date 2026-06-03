@@ -15,8 +15,35 @@
             <section id="clients-section">
                 <h2>Clients</h2>
                 <button id="add-client">+ Add client</button>
+
+
+                <div id="new-client-form" style="display:none">
+                    <input type="text" id="client-name-input" placeholder="Client name">
+                    <select id="client-type-input">
+                        <option value="Artist">Artist</option>
+                        <option value="Producer">Producer</option>
+                        <option value="Label">Label</option>
+                        <option value="Director">Director</option>
+                    </select>
+                    <button id="save-client">Save</button>
+                    <button id="cancel-client">Cancel</button>
+                </div>
                 <ul id="clients-list"></ul>
             </section>
+
+
+
+
+            <section id="stats-section">
+                <h2>Statistics</h2>
+                <p>Total hours: <span id="total-hours">0h 0m</span></p>
+                <p>Total billed: <span id="total-billed">$0</span></p>
+                <p>Pending to collect: <span id="total-pending">$0</span></p>
+            </section>
+
+
+
+
         </main>
 
         <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>

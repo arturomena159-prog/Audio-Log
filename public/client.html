@@ -16,6 +16,20 @@
             <section id="projects-section">
                 <h2>Projects</h2>
                 <button id="add-project">+ Add project</button>
+                <div id="new-project-form" style="display:none">
+                    <input type="text" id="project-name-input" placeholder="Project name">
+                    <select id="project-type-input">
+                        <option value="">-- Select type --</option>
+                        <option value="Film">Film</option>
+                        <option value="Atmos">Atmos</option>
+                        <option value="Mix">Mix</option>
+                        <option value="Master">Master</option>
+                        <option value="Recording">Recording</option>
+                        <option value="General">General</option>
+                    </select>
+                    <button id="save-project">Save</button>
+                    <button id="cancel-project">Cancel</button>
+                </div>
                 <ul id="projects-list"></ul>
             </section>
         </main>
