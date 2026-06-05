@@ -34,8 +34,9 @@ Cliente → Proyecto → Sesiones / Finanzas / Notas / Planning
 - Lista de clientes en tiempo real ✅
 - Formulario agregar cliente con nombre + tipo (Artist/Producer/Label/Director) ✅
 - Stats globales: total hours, total billed, pending to collect ✅
-- **Lista de Active Projects** con nombre (link), fecha de entrega, barra de progreso y % ✅
+- Lista de Active Projects con nombre (link), fecha de entrega, barra de progreso y % ✅
 - Proyectos ordenados por urgencia (fecha de entrega más próxima primero) ✅
+- Layout en grid (dashboard-grid class) ✅
 
 ### client.html / client.js
 - Carga nombre del cliente desde Firestore ✅
@@ -48,7 +49,20 @@ Cliente → Proyecto → Sesiones / Finanzas / Notas / Planning
 - Total de horas calculado en tiempo real ✅
 - Finanzas completas: Hourly/Fixed/No charge, Payment status, Partial ✅
 - Notas: agregar, ver en tiempo real, borrar ✅
-- **Planning:** fecha de entrega, fecha de pago, slider de progreso (0-100%) ✅
+- Planning: fecha de entrega, fecha de pago, slider de progreso (0-100%) ✅
+
+### styles.css ← EN PROGRESO
+- CSS variables con tema oscuro moderno (estilo Figma/Linear) ✅
+- Reset base, body, header, main, sections ✅
+- Botones, inputs, labels, textarea ✅
+- Listas, links, progress bar, range slider ✅
+- Stats section ✅
+- Dashboard grid layout ✅
+- **Tema actual:** negro casi puro con accent morado
+  - --bg: #0f0f0f, --surface: #1a1a1a, --toolbar: #141414
+  - --border: #2a2a2a, --text: #ebebeb, --text-dim: #666666
+  - --accent: #7c3aed (morado), --accent-blue: #3b82f6
+- **Pendiente:** selector de temas (Ableton naranja + Logic azul) con localStorage
 
 ## Firestore collections
 - `clients` — { name, type, userId }
@@ -65,11 +79,11 @@ Cliente → Proyecto → Sesiones / Finanzas / Notas / Planning
 - **Bug conocido en project.js:** listener de `add-note` y onSnapshot de `notes` están anidados dentro del `.get().then()` de finanzas — pueden registrarse múltiples veces si el usuario recarga. Pendiente refactorizar.
 
 ## Plan pendiente
-- [ ] CSS — dar estilo profesional a toda la app ← SIGUIENTE
+- [ ] Selector de temas (Ableton + Logic) con localStorage ← SIGUIENTE
 - [ ] client.html/js: total de horas del cliente y total facturado
 - [ ] Instalar Node.js + Firebase CLI para hacer deploy a Firebase Hosting
 - [ ] Vista compartible para artistas (ver proyecto, dejar comentarios, sin acceso a finanzas/timer)
 - [ ] Calcular billed/pending para proyectos Hourly en dashboard
 
 **Why:** App para profesionales de audio para registrar horas, proyectos y finanzas por cliente.
-**How to apply:** El usuario entiende bien los patrones de guardar/cargar/escuchar de Firestore, bloques if/else, y la estructura del código. Puede ir a buen ritmo. Siguiente paso acordado: CSS.
+**How to apply:** El usuario entiende bien CSS variables, selectores, box model y flexbox/grid. Puede ir a buen ritmo. Siguiente paso acordado: selector de temas con localStorage.
