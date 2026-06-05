@@ -66,7 +66,51 @@ auth.onAuthStateChanged(function(user) {
         });
         document.getElementById("total-billed").textContent = "$" + totalBilled.toFixed(2);
         document.getElementById("total-pending").textContent = "$" + totalPending.toFixed(2);
+
+
+        const projectsArray = [];
+        snapshot.forEach(function(doc) {
+            projectsArray.push({ id: doc.id, ...doc.data() });
+        });
+
+        projectsArray.sort(function(a, b) {
+            if (!a.deliveryDate) return 1;
+            if (!b.deliveryDate) return -1;
+            return a.deliveryDate > b.deliveryDate ? 1 : -1;
+        });
+
+        const projectsList = document.getElementById("projects-list");
+        projectsList.innerHTML = "";
+        projectsArray.forEach(function(project) {
+            const li = document.createElement("li");
+
+            const a = document.createElement("a")
+            a.textContent = project.name;
+            a.href = "project.html?id=" + project.id;
+
+            const date = document.createElement("span");
+            date.textContent = project.deliveryDate ? " - Due: " + project.deliveryDate : " - No date";
+
+            const progress = project.progress !== undefined ? project.progress : 0;
+            const bar = document.createElement("progress");
+            bar.value = progress;
+            bar.max = 100;
+
+            const progressText = document.createElement("span");
+            progressText.textContent = " " + progress + "%"
+
+            li.appendChild(a);
+            li.appendChild(date);
+            li.appendChild(bar);
+            li.appendChild(progressText);
+            projectsList.appendChild(li);
+        });
+
+
+
     });
+
+    
 });
 
 // Cierra la sesión del usuario y lo manda de regreso al login

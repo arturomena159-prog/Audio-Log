@@ -77,6 +77,14 @@ db.collection ("projects").doc(projectId).get().then(function(doc) {
         const remaining = data.amount - data.amountPaid;
         document.getElementById("remaining-amount").textContent = "$" + remaining.toFixed(2);
     }
+    if (data.deliveryDate) document.getElementById("delivery-date-input").value = data.deliveryDate;
+    if (data.paymentDate) document.getElementById("payment-date-input").value = data.paymentDate;
+    if (data.progress !== undefined) {
+        document.getElementById("progress-input").value = data.progress;
+        document.getElementById("progress-display").textContent = data.progress + "%";
+    }
+
+
     updateFinanceCalculations();
 
 document.getElementById("add-note").addEventListener("click", function() {
@@ -109,6 +117,8 @@ document.getElementById("add-note").addEventListener("click", function() {
 
 
     });
+
+
 
 
 
@@ -168,6 +178,21 @@ document.getElementById("add-note").addEventListener("click", function() {
             amount: amount,
             amountPaid: amountPaid
         });
+    });
+
+
+    document.getElementById("save-planning").addEventListener("click", function() {
+        const deliveryDate = document.getElementById("delivery-date-input").value;
+        const paymentDate = document.getElementById("payment-date-input").value;
+        const progress = parseInt(document.getElementById("progress-input").value);
+
+        db.collection("projects").doc(projectId).update({
+            deliveryDate: deliveryDate,
+            paymentDate: paymentDate,
+            progress: progress
+        });
+
+
     });
 
 
@@ -274,3 +299,10 @@ document.getElementById("amount-paid-input").addEventListener("input", function(
         document.getElementById("remaining-amount").textContent = "$" + remaining.toFixed(2);
     }
 });
+
+
+document.getElementById("progress-input").addEventListener("input", function() {
+    document.getElementById("progress-display").textContent = this.value + "%";
+
+});
+
