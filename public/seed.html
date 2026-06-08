@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AudioLog - Seed Clients</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 60px auto; padding: 20px; }
+        #status { margin-top: 20px; line-height: 2; }
+        .ok { color: green; }
+        .err { color: red; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        button:disabled { opacity: 0.5; cursor: default; }
+    </style>
+</head>
+<body>
+    <h2>Seed Clients</h2>
+    <p>Agrega todos tus clientes de una vez. <strong>Corre esto solo una vez.</strong></p>
+    <button id="run">Agregar clientes</button>
+    <div id="status"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBMFDWMqVT8GUxf1ZTHnCiL9mmvrV98W9Q",
+            authDomain: "audio-log-b1c37.firebaseapp.com",
+            projectId: "audio-log-b1c37",
+            storageBucket: "audio-log-b1c37.firebasestorage.app",
+            messagingSenderId: "755276953395",
+            appId: "1:755276953395:web:985819a760bafadaddf046"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        const clients = [
+            "Arran", "Boifrend", "Elvis", "Rene Antonio", "Анастасія",
+            "Fcisco", "Nate", "Sultan", "Cielo", "Mekyja", "Alvar",
+            "Miss Blanche", "Diz Establishment", "Crooks Inc", "Anttonias",
+            "Arni Montes", "Mariona Aguilera"
+        ];
+
+        document.getElementById("run").addEventListener("click", async function() {
+            const user = auth.currentUser;
+            if (!user) {
+                alert("No estás logueado. Ve al dashboard primero y luego regresa aquí.");
+                return;
+            }
+
+            const btn = document.getElementById("run");
+            const status = document.getElementById("status");
+            btn.disabled = true;
+            status.innerHTML = "";
+
+            for (const name of clients) {
+                try {
+                    await db.collection("clients").add({ name, type: "Artist", userId: user.uid });
+                    status.innerHTML += `<div class="ok">✓ ${name}</div>`;
+                } catch (e) {
+                    status.innerHTML += `<div class="err">✗ ${name} — ${e.message}</div>`;
+                }
+            }
+
+            status.innerHTML += "<br><strong>Listo. Puedes cerrar esta página.</strong>";
+        });
+    </script>
+</body>
+</html>
